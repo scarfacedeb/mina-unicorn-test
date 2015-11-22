@@ -26,6 +26,7 @@ set :user, "deploy"
 # They will be linked in the 'deploy:link_shared_paths' step.
 set :shared_paths, [ ]
 
+set :unicorn_env, :development
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.
