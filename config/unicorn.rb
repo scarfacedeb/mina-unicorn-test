@@ -5,7 +5,7 @@ preload_app true
 GC.respond_to?(:copy_on_write_friendly=) and GC.copy_on_write_friendly = true
 
 shared_dir = File.expand_path('../../../shared/', __FILE__)
-pid "#{shared_dir}/pids/unicorn.pid"
+pid "#{shared_dir}/tmp/pids/unicorn.pid"
 
 before_fork do |server, worker|
 	  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
