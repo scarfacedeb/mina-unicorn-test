@@ -2,7 +2,6 @@ worker_processes 16
 listen "127.0.0.1:3000"
 
 preload_app true
-rails_env :development
 GC.respond_to?(:copy_on_write_friendly=) and GC.copy_on_write_friendly = true
 
 before_fork do |server, worker|
