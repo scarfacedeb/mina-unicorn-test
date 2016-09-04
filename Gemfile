@@ -1,8 +1,9 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 gem "mina"
-if ENV['LOCAL'] == "1"
-  gem "mina-unicorn", path: "../mina-unicorn"
+
+if ENV["DEV"] == "1"
+  gem "mina-unicorn", path: "../../"
 else
   gem "mina-unicorn"
 end
