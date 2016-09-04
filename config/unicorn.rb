@@ -1,16 +1,6 @@
-worker_processes 16
-listen "127.0.0.1:3000"
-
-preload_app true
-GC.respond_to?(:copy_on_write_friendly=) and GC.copy_on_write_friendly = true
+worker_processes 1
+listen "localhost:3000"
 
 shared_dir = File.expand_path('../../../shared/', __FILE__)
 pid "#{shared_dir}/tmp/pids/unicorn.pid"
 
-before_fork do |server, worker|
-	  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
-end
-
-after_fork do |server, worker|
-	  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
-end
