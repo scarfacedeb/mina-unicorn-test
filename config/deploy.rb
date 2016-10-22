@@ -12,7 +12,7 @@ require 'mina/chruby'
 
 set :domain, 'nonpandoras.com'
 set :deploy_to, '/home/deploy/apps/unicorn_test'
-set :repository, 'git@bitbucket.org:scarfacedeb/unicorn_test.git'
+set :repository, 'https://github.com/scarfacedeb/mina-unicorn-test'
 set :branch, 'master'
 
 set :forward_agent, true
