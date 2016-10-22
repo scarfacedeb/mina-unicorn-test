@@ -1,9 +1,8 @@
 require 'mina/bundler'
 # require 'mina/rails'
 require 'mina/git'
-require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 require 'mina/unicorn'
-require 'mina/rvm'    # for rvm support. (http://rvm.io)
+require 'mina/chruby'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -36,12 +35,7 @@ set :rails_env, :development
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
 task :environment do
-  # If you're using rbenv, use this to load the rbenv environment.
-  # Be sure to commit your .ruby-version or .rbenv-version to your repository.
-  # invoke :'rbenv:load'
-
-  # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-2.1.2]'
+  invoke :'chruby[ruby-2.3]'
 end
 
 desc "Deploys the current version to the server."
@@ -62,10 +56,3 @@ task :deploy => :environment do
     end
   end
 end
-
-# For help in making your deploy script, see the Mina documentation:
-#
-#  - http://nadarei.co/mina
-#  - http://nadarei.co/mina/tasks
-#  - http://nadarei.co/mina/settings
-#  - http://nadarei.co/mina/helpers
