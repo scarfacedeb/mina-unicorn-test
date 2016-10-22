@@ -23,7 +23,7 @@ set :user, "deploy"
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ["tmp"]
+set :shared_dirs, ["tmp", "vendor/bundle"]
 
 set :unicorn_env, :development
 set :rails_env, :development
@@ -35,23 +35,18 @@ set :rails_env, :development
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
 task :environment do
-  invoke :'chruby[ruby-2.3]'
+  invoke :'chruby', 'ruby-2.3'
 end
 
 desc "Deploys the current version to the server."
 task :deploy => :environment do
-  to :before_hook do
-    # Put things to run locally before ssh
-  end
   deploy do
-    # Put things that will set up an empty directory into a fully set-up
-    # instance of your project.
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'deploy:cleanup'
 
-    to :launch do
+    on :launch do
       invoke :'unicorn:restart'
     end
   end
