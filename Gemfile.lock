@@ -1,7 +1,7 @@
 PATH
   remote: ../../
   specs:
-    mina-unicorn (0.5.0)
+    mina-unicorn (1.0.0)
       mina (~> 1.0)
 
 GEM
